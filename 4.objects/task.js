@@ -10,18 +10,13 @@ Student.prototype.setSubject = function (subjectName) {
 }
 
 Student.prototype.addMarks = function (...marks) {
-    if (!this.wasExcl) {
-        for (let mark of marks) {
-        parseInt(mark)
-        this.marks.push(mark)
-        }
+    if (!('excluded' in this)) {
+        this.marks.push(...marks)
     }
 }
 
 Student.prototype.getAverage = function () {
-    if (this.wasExcl) {
-        return 0
-    } else {
+    if (!('excluded' in this)) {
         return this.marks.reduce((acc, num, ind, arr) => {
             acc += num
             if(ind === arr.length - 1) {
@@ -30,11 +25,11 @@ Student.prototype.getAverage = function () {
             return acc
         }, 0)
     }
+    return 0
 }
 
 Student.prototype.exclude = function (reason) {
     this.excluded = reason
-    this.wasExcl = true
     delete this.marks
     delete this.subject
 }
