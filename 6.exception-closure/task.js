@@ -24,16 +24,15 @@ class Triangle {
         this.a = a
         this.b = b
         this.c = c
-        this._perimeter = a + b + c
-        let p = this._perimeter / 2
-        this._area = Number.parseFloat(Math.sqrt(p * (p - a) * (p - b) * (p - c)).toFixed(3))
     }
 
     get perimeter() {
-        return this._perimeter
+        return this._perimeter = this.a + this.b + this.c
     }
 
     get area() {
+        let p = this._perimeter / 2
+        this._area = Number.parseFloat(Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3))
         return this._area
     }
 }
