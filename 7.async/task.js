@@ -30,7 +30,7 @@ class AlarmClock {
     }
 
     getCurrentFormattedTime(){
-        return new Date().toLocaleTimeString().slice(0,-3)
+        return new Date().toLocaleTimeString("en-US", { hour12: false }).slice(0, 5)
     }
 
     start() {
